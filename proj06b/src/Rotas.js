@@ -1,0 +1,45 @@
+import express from "express";
+
+import { produto } from "./database/Produto.js";
+
+const rotas = express.Router();
+
+rotas.get("/produtos", async function(requisicao, resposta) {
+    // tentando obter produtos do banco de dados
+    try {
+        const resultados = await produto.find();
+        if (resultados.length > 0)
+            resposta.status(200).json(resultados)
+        else
+            resposta.sendStatus(404)
+    }
+    // caso falhe
+    catch(erro) {
+        console.log(erro.message)
+        resposta.sendStatus(500)
+    }
+})
+
+rotas.post("/catalogar", async function(requisicao, resposta) {
+    // tentando salvar o produto no banco de dados
+    try {
+        const novoProduto = new produto({
+            codigo: requisicao.body.codigo,
+            marca: requisicao.body.marca,
+            modelo: requisicao.body.modelo,
+            preco: parseInt(requisicao.body.preco),
+            descricao: requisicao.body.descricao,
+            imagens: requisicao.body.images,
+            promocao: requisicao.body.promocao,
+        })
+        const resultado = await novoProduto.save()
+        resposta.status(201).json(resultado)
+    }
+    // caso falhe
+    catch(erro) {
+        console.log(erro.message)
+        resposta.sendStatus(500)
+    }
+})
+
+export default rotas;
