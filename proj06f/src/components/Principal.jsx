@@ -37,14 +37,16 @@ export default function Principal(props) {
                 props.produtos.map(function (produto, indice) {
                     return (
                         <Produto key={indice}>
-                            <ProdutoImagem
-                                src={produto.imagens[0]}
-                                alt="Foto do Produto"
-                            />
-                            <ProdutosDados>
-                                <div> {produto.modelo} </div>
-                                <div> R$ {produto.preco} </div>
-                            </ProdutosDados>
+                            <a href={ "/produto" + produto.codigo }>
+                                <ProdutoImagem
+                                    src={produto.imagens[0]}
+                                    alt="Foto do Produto"
+                                />
+                                <ProdutosDados>
+                                    <div> {produto.modelo} </div>
+                                    <div> R$ {produto.preco} </div>
+                                </ProdutosDados>
+                            </a>
                         </Produto>
                     )
                 })

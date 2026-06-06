@@ -1,11 +1,15 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
-import Principal from "../components/Principal.jsx";
 import Navegacao from "../components/Navegacao.jsx";
+import Exibidor from "../components/Exibidor.jsx";
 
 import ProdutosExemplo from "../datas/ProdutosExemplo.js";
 
-export default function Vitrine() {
+export default function Produto() {
+    const { codigo } = useParams()
+    const produtoEncontrado = ProdutosExemplo.find((produto) => produto.codigo == produto) || {}
+
     return (
         <>
             <Navegacao titulo="VITRINE">
@@ -13,8 +17,8 @@ export default function Vitrine() {
                 <a href="/promocao"> Promoção </a>
                 <a href="/carrinho"> Carrinho </a>
             </Navegacao>
-            
-            <Principal produtos={ProdutosExemplo} />
+
+            <Exibidor produto={produtoEncontrado} />
         </>
     )
 }
