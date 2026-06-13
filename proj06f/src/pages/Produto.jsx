@@ -8,11 +8,11 @@ import ProdutosExemplo from "../datas/ProdutosExemplo.js";
 
 export default function Produto() {
     const { codigo } = useParams()
-    const produtoEncontrado = ProdutosExemplo.find((produto) => produto.codigo == produto) || {}
+    const produtoEncontrado = ProdutosExemplo.find((produto) => produto.codigo == codigo) || {}
 
     return (
         <>
-            <Navegacao titulo="VITRINE">
+            <Navegacao titulo="PRODUTO">
                 <a href="/"> Início </a>
                 <a href="/promocao"> Promoção </a>
                 <a href="/carrinho"> Carrinho </a>
