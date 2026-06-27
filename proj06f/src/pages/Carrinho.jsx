@@ -26,7 +26,7 @@ export default function Carrinho() {
             }
         })
         definirPreco(total)
-    }, [carrinho])
+    }, [ProdutosExemplo, carrinho])
     
     return (
         <>
@@ -45,8 +45,23 @@ export default function Carrinho() {
                             <th>Modelo</th>
                             <th>Preço</th>
                         </tr>
+                        {ProdutosExemplo.length > 0 &&
+                            carrinho.map(function (codigo, indice) {
+                                for (const produto of ProdutosExemplo) {
+                                    if (produto.codigo == codigo) {
+                                        <tr key={indice}>
+                                            <td> {produto.codigo} </td>
+                                            <td> {produto.modelo} </td>
+                                            <td> R$ {produto.preco},00 </td>
+                                        </tr>
+                                    }
+                                }
+                            })
+                        }
                     </tbody>
                 </table>
+                <br/>
+                <button onClick={Pagamento}> Pagamento por Pix </button>
             </Janela>
         </>
     )

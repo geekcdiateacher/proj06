@@ -20,6 +20,38 @@ rotas.get("/produtos", async function(requisicao, resposta) {
     }
 })
 
+rotas.get("/produto/:codigo", async function(requisicao, resposta) {
+    const { codigo } = requisicao.params
+    try {
+        const resultados = await produto.find({ codigo: codigo });
+        if (resultados.length > 0)
+            resposta.status(200).json(resultados)
+        else
+            resposta.sendStatus(404)
+    }
+    // caso falhe
+    catch(erro) {
+        console.log(erro.message)
+        resposta.sendStatus(500)
+    }
+})
+
+rotas.get("/promocao", async function(requisicao, resposta) {
+    // tentando obter produtos do banco de dados
+    try {
+        const resultados = await produto.find({ promocao: true });
+        if (resultados.length > 0)
+            resposta.status(200).json(resultados)
+        else
+            resposta.sendStatus(404)
+    }
+    // caso falhe
+    catch(erro) {
+        console.log(erro.message)
+        resposta.sendStatus(500)
+    }
+})
+
 rotas.post("/catalogar", async function(requisicao, resposta) {
     // tentando salvar o produto no banco de dados
     try {

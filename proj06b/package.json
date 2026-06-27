@@ -2,14 +2,15 @@
   "name": "proj06b",
   "version": "1.0.0",
   "description": "",
-  "main": "./scr/index.js",
-  "type": "module",
+  "main": "./src/index.js",
+
   "scripts": {
-    "start": "node ./scr/index.js"
+    "start": "node ./src/index.js"
   },
   "keywords": [],
   "author": "SuperGeeks",
   "license": "ISC",
+  "type": "module",
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",

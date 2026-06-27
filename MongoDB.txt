@@ -1,0 +1,4 @@
+mongodb+srv://skcprofessor:skc123456@supergeeks.6cyav62.mongodb.net/?appName=supergeeks
+
+skcprofessor
+skc123456
